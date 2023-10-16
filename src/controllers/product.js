@@ -1,8 +1,23 @@
-const { products } = require("../../models");
+const { products, Type, ProductCategories, Categories } = require("../../models");
 
 const getAll = async (req, res) => {
     try {
-        const getData = await products.findAll();
+        const getData = await products.findAll({
+            include: [
+                {
+                    model: Type,
+                    as: "types",
+                },
+                {
+                    model: Categories,
+                    as: "category",
+                    through: {
+                        model: ProductCategories,
+                        as: "conjuntion"
+                    }
+                }
+            ]
+        });
         res.send({
             statusCode: 200,
             message: "get data product success",

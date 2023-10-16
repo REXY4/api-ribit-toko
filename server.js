@@ -7,6 +7,7 @@ const host = process.env.APP_HOST;
 const port = process.env.APP_PORT || 4000;
 
 app.use(express.json());
+
 app.get("/", async (req, res) => {
     res.status(200).send({
         statusCode: 200,

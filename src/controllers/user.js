@@ -25,7 +25,6 @@ const register = async (req, res) => {
                 message: error.details[0].message
             })
         }
-
         const findUser = await Users.findOne({
             where: { email }
         });
@@ -38,7 +37,6 @@ const register = async (req, res) => {
         }
         const saltRounds = 15;
         const encrypPassword = Bcrypt.hashSync(password, saltRounds);
-
         const response = await Users.create({
             firstName,
             lastName,

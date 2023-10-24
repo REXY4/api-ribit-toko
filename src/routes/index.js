@@ -3,9 +3,10 @@ const ProductController = require("../controllers/product");
 const typeController = require("../controllers/type");
 const categoryController = require("../controllers/categories");
 const UserController = require("../controllers/user");
+const Auth = require("../middlewares/authentication");
 const route = express.Router();
 
-route.get("/products", ProductController.getAll);
+route.get("/products", Auth, ProductController.getAll);
 route.get("/product/:id", ProductController.getDetail);
 route.post("/product", ProductController.create);
 route.delete("/product/:id", ProductController.deleteData);
